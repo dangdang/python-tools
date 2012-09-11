@@ -1,0 +1,36 @@
+最近研究sina的kanyun,这里记录一些心得
+
+Sever端：
+安装 cassandra 一个分布式的k-v 数据库
+参考：http://wiki.apache.org/cassandra/GettingStarted
+安装没问题，
+不过手册中要改的/etc/cassandra/cassandra.yaml 中的参数 init..的说是推荐为0，不要改了，改了会报错。
+我ubuntu 默认安装，不改配置 ，自动启动，是没问题。
+
+根据 kanyun/README.rst 创建数据库 注意修改库名DATA 为小写 data
+安装zmq
+http://www.zeromq.org/
+按文档安装也没问题
+
+安装python-zmq python-nova
+
+注意这里不要使用devstack 的环境，devstack 会安装最新的python-nova 模块，其中nova.notifier的名称改为nova.notifications了，所以启动kanyun-server会报错
+
+git clone kanyuan.git
+
+python setup.py install
+
+cp kanyun/etc/kanyun.conf.example /etc/kanyun.conf
+
+配置一下，单机可以用不用修改
+
+kanyun/bin/kanyuan-server
+启动即可。如果发现有什么包没安装，继续安装
+
+OK，如果报找到data错误，打开kanyun-server 修改data 为大写 DATA
+
+应该可以顺利启动
+
+work端：
+应该是只需要安装 python-zmq包即可
+/kanyun/bin/worker
