@@ -3,13 +3,16 @@
 Sever端：
 安装 cassandra 一个分布式的k-v 数据库
 参考：http://wiki.apache.org/cassandra/GettingStarted
+http://dmyz.org/archives/404
 安装没问题，
+
 不过手册中要改的/etc/cassandra/cassandra.yaml 中的参数 init..的说是推荐为0，不要改了，改了会报错。
 我ubuntu 默认安装，不改配置 ，自动启动，是没问题。
 
 根据 kanyun/README.rst 创建数据库 注意修改库名DATA 为小写 data
 安装zmq
-http://www.zeromq.org/
+
+http://www.zeromq.org/intro:get-the-software
 按文档安装也没问题
 
 安装python-zmq python-nova
