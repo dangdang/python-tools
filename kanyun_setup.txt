@@ -15,9 +15,9 @@ http://dmyz.org/archives/404
 http://www.zeromq.org/intro:get-the-software
 按文档安装也没问题
 
-安装python-zmq python-nova
+安装python-zmq python-nova uuid 
 
-注意这里不要使用devstack 的环境，devstack 会安装最新的python-nova 模块，其中nova.notifier的名称改为nova.notifications了，所以启动kanyun-server会报错
+注意server端主机不要使用devstack 的环境，devstack 会安装最新的python-nova 模块，其中nova.notifier的名称改为nova.notifications了，所以启动kanyun-server会报错
 
 git clone kanyuan.git
 
@@ -36,4 +36,101 @@ OK，如果报找到data错误，打开kanyun-server 修改data 为大写 DATA
 
 work端：
 应该是只需要安装 python-zmq包即可
-/kanyun/bin/worker
+/kanyun/bin/kanyun-worker
+
+测试数据：
+相对 于virt-top获得的数据，这个数据不太准确
+------------------------------ vminfo ------------------------------
+instance-00000124 --> 2e0715a9-2585-4822-8ece-0a78ff445056
+        cpu=130.48% time=1347389767.000000
+        /2e0715a9-2585-4822-8ece-0a78ff445056/mem_max/total=4194304
+        /2e0715a9-2585-4822-8ece-0a78ff445056/mem_free/total=0
+        /2e0715a9-2585-4822-8ece-0a78ff445056/nic_incoming/vnet7=154053
+        /2e0715a9-2585-4822-8ece-0a78ff445056/nic_outgoing/vnet7=621737
+        /2e0715a9-2585-4822-8ece-0a78ff445056/blk_read/vda=0
+        /2e0715a9-2585-4822-8ece-0a78ff445056/blk_write/vda=2926592
+instance-00000125 --> df9a3404-a6f8-4f99-8f65-e590a21350c8
+        cpu=20.29% time=1347389776.000000
+        /df9a3404-a6f8-4f99-8f65-e590a21350c8/mem_max/total=4194304
+        /df9a3404-a6f8-4f99-8f65-e590a21350c8/mem_free/total=0
+        /df9a3404-a6f8-4f99-8f65-e590a21350c8/nic_incoming/vnet8=6256
+        /df9a3404-a6f8-4f99-8f65-e590a21350c8/nic_outgoing/vnet8=6265
+        /df9a3404-a6f8-4f99-8f65-e590a21350c8/blk_read/vda=0
+        /df9a3404-a6f8-4f99-8f65-e590a21350c8/blk_write/vda=978944
+instance-00000127 --> 611a34fe-485a-4042-af23-d6dee5a49128
+        cpu=0.48% time=1347389776.000000
+        /611a34fe-485a-4042-af23-d6dee5a49128/mem_max/total=4194304
+        /611a34fe-485a-4042-af23-d6dee5a49128/mem_free/total=0
+        /611a34fe-485a-4042-af23-d6dee5a49128/nic_incoming/vnet9=1673
+        /611a34fe-485a-4042-af23-d6dee5a49128/nic_outgoing/vnet9=1220
+        /611a34fe-485a-4042-af23-d6dee5a49128/blk_read/vda=0
+        /611a34fe-485a-4042-af23-d6dee5a49128/blk_write/vda=57344
+instance-00000120 --> 26f05151-0028-423e-8831-281ffda48408
+        cpu=200.80% time=1347389773.000000
+        /26f05151-0028-423e-8831-281ffda48408/mem_max/total=4194304
+        /26f05151-0028-423e-8831-281ffda48408/mem_free/total=0
+        /26f05151-0028-423e-8831-281ffda48408/nic_incoming/vnet5=1305
+        /26f05151-0028-423e-8831-281ffda48408/nic_outgoing/vnet5=920
+        /26f05151-0028-423e-8831-281ffda48408/blk_read/vda=0
+        /26f05151-0028-423e-8831-281ffda48408/blk_write/vda=5328896
+instance-00000123 --> 4533c917-8afc-48f4-8262-c1d5095bb696
+        cpu=0.25% time=1347389761.000000
+        /4533c917-8afc-48f4-8262-c1d5095bb696/mem_max/total=4194304
+        /4533c917-8afc-48f4-8262-c1d5095bb696/mem_free/total=0
+        /4533c917-8afc-48f4-8262-c1d5095bb696/nic_incoming/vnet6=740
+        /4533c917-8afc-48f4-8262-c1d5095bb696/nic_outgoing/vnet6=620
+        /4533c917-8afc-48f4-8262-c1d5095bb696/blk_read/vda=0
+        /4533c917-8afc-48f4-8262-c1d5095bb696/blk_write/vda=32768
+instance-0000011e --> b17d9fbb-9889-463c-94bc-3e6472850e56
+        cpu=22.01% time=1347389771.000000
+        /b17d9fbb-9889-463c-94bc-3e6472850e56/mem_max/total=6291456
+        /b17d9fbb-9889-463c-94bc-3e6472850e56/mem_free/total=0
+        /b17d9fbb-9889-463c-94bc-3e6472850e56/nic_incoming/vnet3=2052
+        /b17d9fbb-9889-463c-94bc-3e6472850e56/nic_outgoing/vnet3=2600
+        /b17d9fbb-9889-463c-94bc-3e6472850e56/blk_read/vda=0
+        /b17d9fbb-9889-463c-94bc-3e6472850e56/blk_write/vda=999424
+instance-0000011d --> ee4724e2-db8f-4e1d-a237-449251326986
+        cpu=22.18% time=1347389776.000000
+        /ee4724e2-db8f-4e1d-a237-449251326986/mem_max/total=4194304
+        /ee4724e2-db8f-4e1d-a237-449251326986/mem_free/total=0
+        /ee4724e2-db8f-4e1d-a237-449251326986/nic_incoming/vnet2=2602
+        /ee4724e2-db8f-4e1d-a237-449251326986/nic_outgoing/vnet2=9600
+        /ee4724e2-db8f-4e1d-a237-449251326986/blk_read/vda=0
+        /ee4724e2-db8f-4e1d-a237-449251326986/blk_write/vda=2163712
+instance-0000011f --> ece58a79-eb3f-4f56-8b56-ae90d73a1cf6
+        cpu=0.48% time=1347389776.000000
+        /ece58a79-eb3f-4f56-8b56-ae90d73a1cf6/mem_max/total=4194304
+        /ece58a79-eb3f-4f56-8b56-ae90d73a1cf6/mem_free/total=0
+        /ece58a79-eb3f-4f56-8b56-ae90d73a1cf6/nic_incoming/vnet4=1673
+        /ece58a79-eb3f-4f56-8b56-ae90d73a1cf6/nic_outgoing/vnet4=1354
+        /ece58a79-eb3f-4f56-8b56-ae90d73a1cf6/blk_read/vda=0
+        /ece58a79-eb3f-4f56-8b56-ae90d73a1cf6/blk_write/vda=69632
+instance-0000011a --> 7127c8b8-f3eb-4466-ba28-360f181cdbdc
+        cpu=22.25% time=1347389764.000000
+        /7127c8b8-f3eb-4466-ba28-360f181cdbdc/mem_max/total=2097152
+        /7127c8b8-f3eb-4466-ba28-360f181cdbdc/mem_free/total=0
+        /7127c8b8-f3eb-4466-ba28-360f181cdbdc/nic_incoming/vnet1=2247
+        /7127c8b8-f3eb-4466-ba28-360f181cdbdc/nic_outgoing/vnet1=8625
+        /7127c8b8-f3eb-4466-ba28-360f181cdbdc/blk_read/vda=0
+        /7127c8b8-f3eb-4466-ba28-360f181cdbdc/blk_write/vda=1931776
+instance-0000012d --> f9f196ee-3281-4c37-a3d8-10d12690cfe0
+        cpu=1.78% time=1347389762.000000
+        /f9f196ee-3281-4c37-a3d8-10d12690cfe0/mem_max/total=4194304
+        /f9f196ee-3281-4c37-a3d8-10d12690cfe0/mem_free/total=0
+        /f9f196ee-3281-4c37-a3d8-10d12690cfe0/nic_incoming/vnet10=55643
+        /f9f196ee-3281-4c37-a3d8-10d12690cfe0/nic_outgoing/vnet10=40552
+        /f9f196ee-3281-4c37-a3d8-10d12690cfe0/blk_read/vda=0
+        /f9f196ee-3281-4c37-a3d8-10d12690cfe0/blk_write/vda=167936
+instance-00000117 --> 8a0ae8a9-e914-4a80-9200-90299cefa3ab
+        cpu=21.29% time=1347389776.000000
+        /8a0ae8a9-e914-4a80-9200-90299cefa3ab/mem_max/total=4194304
+        /8a0ae8a9-e914-4a80-9200-90299cefa3ab/mem_free/total=0
+        /8a0ae8a9-e914-4a80-9200-90299cefa3ab/nic_incoming/vnet0=2351
+        /8a0ae8a9-e914-4a80-9200-90299cefa3ab/nic_outgoing/vnet0=9572
+        /8a0ae8a9-e914-4a80-9200-90299cefa3ab/blk_read/vda=0
+        /8a0ae8a9-e914-4a80-9200-90299cefa3ab/blk_write/vda=2360320
+        55 buffer, spend 0.186675 seconds
+------------------------------------------------------------
+spend 0.186898 seconds
+
+
