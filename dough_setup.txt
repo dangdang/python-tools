@@ -1,0 +1,64 @@
+环境：
+安装mysql数据库
+根据readme创建数据库dough导致schema;
+cp dough/etc/dough/dough.conf.example /etc/dough/dough.conf
+
+安装libzmq1 python-zmq
+zmq其具有一个独特的非中间件的模式
+不需要安装和运行一个消息服务器或中间件。
+你只需要简单的引用ZeroMQ程序库
+然后你就可以愉快的在应用程序之间发送消息了
+因此部署是非常简单的。就性能上来说比其他几个MQ要强的多
+
+注意的是dough.conf中的配置 
+api_listen=*
+api_listen_port=5554
+
+api_listen 不能用localhost,否则会出现
+zmq.core.error.ZMQError: No such device的错误
+
+
+启动dough/etc/dough-farmer
+启动dough/etc/dough-api
+
+新建 /etc/dough/dough-collector.conf
+内容如下：
+[dough-api]
+log: /var/log/dough-api.log
+
+[farmer]
+log: /var/log/dough-farmer.log
+
+
+[Keystone]
+username=admin
+password=password
+tenant_name=admin
+auth_url=http://keystone address:5000/v2.0
+
+修改dough/etc/dough-collector 中相关的doug.conf文件为dough-collector.conf
+
+启动./dough-collector, 一次性运行，没啥意义貌似
+
+准备启动./dough-manager
+load_balancer.py 和network.py 会报一些错误，可能是因为flags参数没取正确。
+手动修改脚本中的地址端口为固定数据，参考dough.conf
+
+load_balancer.py
+DEMUX_CLIENT = Client(host="localhost", port="5556")
+
+network.py
+KANYUN_CLIENT = Client(host="localhost", port="5552")
+
+注释掉dough-manger中的下列部分脚 本
+    cfg.StrOpt('help',
+               short='?',
+               default='',
+               help='help'),
+               
+ 然后启动 /dough-manager
+ 
+ 截至现在，貌似各命令已经基本开始工作，但是数据库也没啥东西，下一步再继续研究各模块功能。
+
+
+
