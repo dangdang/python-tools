@@ -1,0 +1,41 @@
+Horizon Develope
+
+Windows7 amd64+Eclipse+pydev+ horizone(stable essex)
+
+安装python2.7.3 amd64 
+
+easy_install django
+
+选运行一下根目录下的setup.py install
+主要是安装基本环境中的依赖模块
+
+copy /openstack-dashboard/local_settings.py.example /openstack-dashboard/local_settings.py
+
+修改local_setting.py 中的
+OPENSTACK_HOST = "127.0.0.1" 为你的keystone服务器地址
+
+此时可以运行起来了，不过真正要跑还需要手动安装以下模块
+
+easy_install Netaddr
+easy_install python-cloudfiles
+
+不要用easy_install 或者 pip install 安装glanceclient 和keystoneclient 太老了
+python_glanceclient-0.5.1-py2.7.egg-info
+python_keystoneclient-0.1.3-py2.7.egg-info
+
+下载，安装
+https://github.com/openstack/python-novaclient.git
+https://github.com/openstack/python-glanceclient.git
+https://github.com/openstack/python-keystoneclient.git
+
+# Horizon Non-pip Requirements
+-e git+https://github.com/openstack/python-novaclient.git#egg=python-novaclient
+-e git+https://github.com/openstack/python-keystoneclient.git#egg=python-keystoneclient
+-e git+https://github.com/openstack/python-glanceclient.git#egg=python-glanceclient
+
+选运行一下根目录下的setup.py install
+编泽一下
+
+manager.py runserver
+
+应该可以跑起来了。
